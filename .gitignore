@@ -1,2 +1,9 @@
 # Ignore all bazel-* symlinks.
 /bazel-*
+
+# Buck
+/.buckd/
+/buck-out/
+/buckaroo/
+.buckconfig.local
+BUCKAROO_DEPS

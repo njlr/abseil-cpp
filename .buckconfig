@@ -1,0 +1,6 @@
+[project]
+  ignore = .git, .buckd
+
+[cxx]
+  untracked_headers = error
+  

@@ -1,0 +1,15 @@
+cxx_library(
+  name = 'algorithm',
+  header_namespace = 'absl/algorithm',
+  exported_headers = subdir_glob([
+    ('', '**/*.h'),
+  ]),
+  srcs = glob([
+    '**/*.cc',
+  ], excludes = glob([
+    '**/*_test.cc',
+  ])),
+  visibility = [
+    'PUBLIC',
+  ],
+)

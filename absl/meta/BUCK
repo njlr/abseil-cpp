@@ -1,0 +1,15 @@
+cxx_library(
+  name = 'meta',
+  header_namespace = 'absl/meta',
+  exported_headers = subdir_glob([
+    ('', '**/*.h'),
+  ]),
+  srcs = glob([
+    '**/*.cc',
+  ], excludes = glob([
+    '**/*_test.cc',
+  ])),
+  visibility = [
+    'PUBLIC',
+  ],
+)
