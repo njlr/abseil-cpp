@@ -1,0 +1,8 @@
+{
+  "name": "abseil",
+  "dependencies": {
+    "google/gtest": "*",
+    "google/gmock": "*",
+    "google/cctz": "2.1.0"
+  }
+}

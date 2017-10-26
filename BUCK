@@ -1,22 +1,39 @@
-prebuilt_cxx_library(
+include_defs('//BUCKAROO_DEPS')
+
+cxx_library(
   name = 'abseil',
-  header_namespace = '',
-  header_only = True,
-  exported_deps = [
-    '//absl/algorithm:algorithm',
-    '//absl/base:base',
-    '//absl/container:container',
-    '//absl/debugging:debugging',
-    '//absl/memory:memory',
-    '//absl/meta:meta',
-    '//absl/numeric:numeric',
-    '//absl/strings:strings',
-    '//absl/synchronization:synchronization',
-    '//absl/time:time',
-    '//absl/types:types',
-    '//absl/utility:utility',
+  header_namespace = 'absl',
+  exported_headers = subdir_glob([
+    ('absl', '**/*.h'),
+    ('absl', '**/*.inc'),
+  ]),
+  srcs = glob([
+    'absl/**/*.cc',
+  ], excludes = glob([
+    'absl/synchronization/internal/mutex_nonprod.cc',
+    'absl/**/*_test.cc',
+    'absl/**/*_test_*.cc',
+  ])),
+  licenses = [
+    'LICENSE',
   ],
+  deps = BUCKAROO_DEPS,
   visibility = [
     'PUBLIC',
+  ],
+)
+
+cxx_test(
+  name = 'tests',
+  header_namespace = '',
+  srcs = glob([
+    'absl/**/*_test.cc',
+    'absl/**/*_test_*.cc',
+  ]),
+  preprocessor_flags = [
+    '-DABSL_MALLOC_EXTENSION_TEST_ALLOW_MISSING_EXTENSION=1',
+  ],
+  deps = [
+    ':abseil',
   ],
 )
